@@ -1,19 +1,37 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 
-var Nav = require('./components/nav')(React)
+var minesweeper = require('minesweeper')
+var pin = require('linchpin')
 
-//var Nav = require('./components/nav')
+var Nav = require('./components/nav')
 var Board = require('./components/board')
 
-function App (props) {
-  return <div>
-    <Nav title={props.title}></Nav>
-    <Board></Board>
-  </div>
-}
+var board
+var title = 'minesweeper'
 
-ReactDOM.render(
-  <App title="Minesweeper"/>,
-  document.getElementById('app')
-)
+pin.on('newgame', function () {
+  var ma = minesweeper.generateMineArray({
+    rows: 10,
+    cols: 10,
+    mines: 15
+  })
+
+  board = new minesweeper.Board(ma)
+  render()
+
+})
+
+pin.on('repaint', render)
+
+pin.emit('newgame')
+
+function render() {
+  ReactDOM.render(
+    <div>
+      <Nav title={title} board={board}></Nav>
+      <Board board={board}></Board>
+    </div>,
+    document.getElementById('app')
+  )
+}

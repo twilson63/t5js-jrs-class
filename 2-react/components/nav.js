@@ -1,19 +1,27 @@
-module.exports = React => props =>
-  <div className="navbar navbar-default">
-    <div className="container">
-      <a href="#" className="brand">
-        {props.title}
-      </a>
+var React = require('react')
+
+var minesweeper = require('minesweeper')
+var BoardStateEnum = minesweeper.BoardStateEnum
+
+function description (boardState) {
+    if (boardState === BoardStateEnum.PRISTINE) {
+        return 'Ready'
+    } else if (boardState === BoardStateEnum.IN_PROGRESS) {
+        return 'In Progress'
+    } else if (boardState === BoardStateEnum.LOST) {
+        return 'You Lose'
+    } else if (boardState === BoardStateEnum.WON) {
+        return 'You Won'
+    }
+}
+
+module.exports = function (props) {
+  return <div className="navbar navbar-default">
+    <a className="brand" href="#">{props.title}</a>
+    <div className="pull-right">
+      <div className="label label-success">
+        { description(props.board.state())}
+      </div>
     </div>
   </div>
-
-///var React = require('react')
-
-// module.exports = function (props) {
-//   return <div className="navbar navbar-default">
-//     Insert Nav Here
-//   </div>
-// }
-
-// React.createElement('div', {
-//   className:""}, 'text')
+}
