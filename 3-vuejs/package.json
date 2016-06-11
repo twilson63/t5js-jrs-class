@@ -13,6 +13,7 @@
     "babel": "^6.5.2",
     "bootstrap": "^3.3.6",
     "browserify": "^13.0.1",
+    "minesweeper": "^1.0.5",
     "vue": "^1.0.24",
     "vueify": "^8.5.4",
     "wzrd": "^1.3.1"

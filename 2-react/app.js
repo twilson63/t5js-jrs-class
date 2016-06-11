@@ -1,11 +1,19 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 
+var Nav = require('./components/nav')(React)
+
+//var Nav = require('./components/nav')
+var Board = require('./components/board')
+
 function App (props) {
-  return <h1>Hello from a JSX Component</h1>
+  return <div>
+    <Nav title={props.title}></Nav>
+    <Board></Board>
+  </div>
 }
 
 ReactDOM.render(
-  <App />,
+  <App title="Minesweeper"/>,
   document.getElementById('app')
 )
