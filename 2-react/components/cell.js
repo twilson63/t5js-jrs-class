@@ -28,10 +28,10 @@ function cellState(cell) {
 
 module.exports = React.createClass({
     handleClick() {
-        var cell = this.props.cell
-        var board = this.props.board
-        board.openCell(cell.x, cell.y)
-        pin.emit('repaint')
+      var cell = this.props.cell
+      var board = this.props.board
+      board.openCell(cell.x, cell.y)
+      pin.emit('repaint')
     },
     render() {
       return  <div className="col-md-1" onClick={this.handleClick}>
